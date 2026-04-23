@@ -1,0 +1,73 @@
+﻿@model List<Dominio.Pago>
+
+<h1>Mis pagos del mes</h1>
+
+<p>
+    Mes: @ViewBag.Mes / @ViewBag.Anio
+</p>
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+
+            <th>Id</th>
+            <th>Tipo de gasto</th>
+            <th>Método</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Monto para orden</th>
+            <th>Detalle</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            var pagoRecurrente = item as Dominio.PagoRecurrente;
+
+            var pagoUnico = item as Dominio.PagoUnico;
+
+            // fecha
+            string fechaTexto = "";
+            if (pagoUnico != null)
+            {
+                fechaTexto = pagoUnico.Fecha.ToShortDateString();
+
+            }
+            else if (pagoRecurrente != null)
+            {
+
+                fechaTexto = pagoRecurrente.FechaInicio.ToShortDateString();
+            }
+
+            // monto para orden 
+            double montoMostrar;
+            if (pagoRecurrente != null)
+            {
+                montoMostrar = pagoRecurrente.CalcularMontoMensualFinal(); // cuota mensual
+
+            }
+            else
+            {
+
+                montoMostrar = item.CalcularMontoFinal(); // pago unico y descuento
+            }
+
+            <tr>
+
+                <td>@item.Id</td>
+                <td>@item.Tipo.Nombre</td>
+                <td>@item.Metodo</td>
+                <td>@item.Descripcion</td>
+                <td>@fechaTexto</td>
+                <td>@montoMostrar</td>
+                <td>@item.ResumenListado(DateTime.Today)</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,120 @@
+﻿@using Dominio
+@model object
+
+<h1>Cargar nuevo pago</h1>
+
+@if (ViewBag.Error != null)
+{
+
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (ViewBag.Msg != null)
+{
+
+    <div class="alert alert-success">@ViewBag.Msg</div>
+}
+
+<form method="post">
+
+    <div class="form-group">
+        <label>Descripción</label>
+
+        <input name="descripcion" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Monto</label>
+        <input name="monto" type="number" step="0.01" class="form-control" />
+    </div>
+
+    <div class="form-group">
+
+        <label>Método de pago</label>
+        <select name="metodo" class="form-control">
+
+            @foreach (var m in Enum.GetValues(typeof(MetodoPago)))
+            {
+
+                <option value="@m">@m</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+
+        <label>Tipo de gasto</label>
+        <select name="tipoGastoId" class="form-control">
+
+            @foreach (var t in ViewBag.Tipos)
+            {
+
+                <option value="@t.Id">@t.Nombre</option>
+            }
+        </select>
+    </div>
+
+
+    <div class="form-group">
+
+        <label>Tipo de Pago</label>
+
+        <select name="tipoPago" class="form-control" id="tipoPagoSelect">
+            <option value="Unico">Pago Único</option>
+
+            <option value="Recurrente">Pago Recurrente</option>
+        </select>
+    </div>
+
+    @*pago unic*@
+    <div id="pagoUnico">
+        <div class="form-group">
+            <label>Fecha del pago</label>
+            <input name="fechaPago" type="date" class="form-control" />
+        </div>
+
+    </div>
+
+    @*pago recurrente*@
+    <div id="pagoRecurrente" style="display:none;">
+        <div class="form-group">
+            <label>Fecha inicio</label>
+
+            <input name="fechaInicio" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group">
+
+            <label>Fecha fin (opcional)</label>
+            <input name="fechaFin" type="date" class="form-control" />
+
+        </div>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+    <script>
+
+        const select = document.getElementById("tipoPagoSelect");
+        const unico = document.getElementById("pagoUnico");
+        const rec = document.getElementById("pagoRecurrente");
+
+        select.addEventListener("change", function () {
+
+            if (this.value === "Unico") {
+
+                unico.style.display = "";
+                rec.style.display = "none";
+
+            } else {
+
+                unico.style.display = "none";
+                rec.style.display = "";
+            }
+        });
+    </script>
+
+

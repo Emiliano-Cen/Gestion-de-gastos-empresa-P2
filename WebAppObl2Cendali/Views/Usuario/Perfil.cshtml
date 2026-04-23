@@ -1,0 +1,96 @@
+﻿@model Dominio.Usuario
+
+<h1>Perfil de usuario</h1>
+
+<div>
+    <h4>Datos del usuario</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Rol
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Rol
+        </dd>
+
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Nombre
+        </dd>
+
+        <dt class="col-sm-2">
+            Apellido
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Apellido
+        </dd>
+
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+
+        <dt class="col-sm-2">
+            Fecha de incorporación
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FechaIncorporacion.ToShortDateString()
+        </dd>
+
+        <dt class="col-sm-2">
+            Equipo
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Equipo.Nombre
+        </dd>
+
+        <dt class="col-sm-2">
+            Gastado este mes
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.TotalMes
+        </dd>
+    </dl>
+</div>
+
+@if (ViewBag.EsGerente == true)
+{
+    <hr />
+    <h4>Miembros de mi equipo</h4>
+
+    
+        var miembros = ViewBag.Miembros as List<Dominio.Usuario>;
+    
+
+    @if (miembros == null || miembros.Count == 0)
+    {
+        <p>No hay miembros en el equipo</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var m in miembros)
+            {
+                <tr>
+                    <td>@m.Nombre</td>
+                    <td>@m.Apellido</td>
+                    <td>@m.Email</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}
+

@@ -1,0 +1,35 @@
+﻿@model Dominio.TipoGasto
+
+<h1>Formulario de Alta de Tipo de Gasto</h1>
+<h4>Crear nuevo tipo de gasto</h4>
+<hr />
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (ViewBag.Msg != null)
+{
+    <div class="alert alert-success">@ViewBag.Msg</div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <input name="nombre" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Descripción</label>
+                <input name="descripcion" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

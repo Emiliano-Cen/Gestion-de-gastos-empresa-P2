@@ -1,0 +1,42 @@
+﻿@model List<Dominio.TipoGasto>
+
+<h1>Tipos de gasto</h1>
+
+@if (ViewBag.Msg != null)
+{
+    <div class="alert alert-success">@ViewBag.Msg</div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<p>
+    <a asp-action="Crear" class="btn btn-primary">Crear nuevo tipo de gasto</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

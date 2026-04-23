@@ -1,0 +1,43 @@
+﻿@model Dominio.TipoGasto
+
+
+<h1>Eliminar tipo de gasto</h1>
+
+<h2>¿Está seguro que desea eliminar el tipo de gasto seleccionado?</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div>
+    <h4>Datos del tipo de gasto</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">Id</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+
+        <dt class="col-sm-2">Descripción</dt>
+        <dd class="col-sm-10">@Model.Descripcion</dd>
+
+
+    </dl>
+
+</div>
+
+<form method="post">
+
+    <input type="hidden" name="id" value="@Model.Id" />
+
+
+    @Html.CheckBox("IsChecked") <span>Entiendo que se borrará permanentemente</span>
+    <br /><br />
+
+    <input type="submit" value="Eliminar" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+</form>

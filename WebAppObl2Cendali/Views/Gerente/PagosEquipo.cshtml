@@ -1,0 +1,75 @@
+﻿@using Dominio
+@model List<Pago>
+
+<h1>Pagos del equipo @ViewBag.NombreEquipo</h1>
+
+<form method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-2">
+            <label>Año</label>
+            <input type="number" name="anio" value="@ViewBag.Anio" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <label>Mes</label>
+            <input type="number" name="mes" value="@ViewBag.Mes" class="form-control" />
+        </div>
+        <div class="col-md-2 align-self-end">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>No hay pagos para el mes @ViewBag.Mes/@ViewBag.Anio.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usuario</th>
+                <th>Tipo de gasto</th>
+                <th>Método</th>
+                <th>Monto base</th>
+                <th>Monto con beneficio/recargo</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                var pagoRec = p as PagoRecurrente;
+                var pagoUni = p as PagoUnico;
+
+                // monto base
+                double montoBase = p.Monto;
+
+                // con beneficio / recargo
+                double montoFinal;
+                if (pagoRec != null)
+                {
+                    // recurrentes 
+                    montoFinal = pagoRec.CalcularMontoMensualFinal();
+                }
+                else
+                {
+                    // unicos
+                    montoFinal = p.CalcularMontoFinal();
+                }
+
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Usuario.Nombre @p.Usuario.Apellido (@p.Usuario.Email)</td>
+                    <td>@p.Tipo.Nombre</td>
+                    <td>@p.Metodo</td>
+                    <td>@montoBase</td>
+                    <td>@montoFinal</td>
+                    <td>@p.ResumenListado(DateTime.Today)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
