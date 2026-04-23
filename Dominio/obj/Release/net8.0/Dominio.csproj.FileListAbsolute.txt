@@ -1,0 +1,11 @@
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\bin\Release\net8.0\Dominio.deps.json
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\bin\Release\net8.0\Dominio.dll
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\bin\Release\net8.0\Dominio.pdb
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\Dominio.GeneratedMSBuildEditorConfig.editorconfig
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\Dominio.AssemblyInfoInputs.cache
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\Dominio.AssemblyInfo.cs
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\Dominio.csproj.CoreCompileInputs.cache
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\Dominio.dll
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\refint\Dominio.dll
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\Dominio.pdb
+D:\facultad\2Semestre\P2\Obl2P2ECendali\Obl2P2EmilianoCendali\Dominio\obj\Release\net8.0\ref\Dominio.dll
